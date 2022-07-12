@@ -8,13 +8,11 @@ public class NavmeshAgentScript : MonoBehaviour
 
     public Transform target;
     NavMeshAgent agent;
-    public GameObject patrolTarget1;
-    public GameObject patrolTarget2;
-    public GameObject patrolTarget3;
-    public GameObject patrolTarget4;
-    public List<GameObject> waypoints;
+    public GameObject[] wayPoints;
+
     private Transform currentDestination;
     private int PatrolPoint;
+    private int PatrolPointCount;
     private float dist;
     private float seenDist;
     public int AIState;
@@ -28,8 +26,7 @@ public class NavmeshAgentScript : MonoBehaviour
     private bool hadChased;
     public Vector3 lastSeenAt;
     public float delay = 3f;
-
-    public float patrolRadius;
+    public float patrolCheckRange;
 
     // This enemy uses an integer to flag the AI state:
 
@@ -42,12 +39,8 @@ public class NavmeshAgentScript : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         target = GameObject.FindGameObjectWithTag("PlayerBody").transform;
         PatrolPoint = 0;
-        waypoints.Add(patrolTarget1);
-        waypoints.Add(patrolTarget2);
-        waypoints.Add(patrolTarget3);
-        waypoints.Add(patrolTarget4);
-
-        patrolRadius = 0.5f;
+        PatrolPointCount = wayPoints.Length;
+        patrolCheckRange = 0.5f;
     }
 
     void DelayedSwitch()
@@ -87,21 +80,23 @@ public class NavmeshAgentScript : MonoBehaviour
         if (AIState == 3) // ON PATROL -- THIS ALL WORKS AS DESIRED. 
         {
             agent.speed = patrolSpeed;
-            currentDestination = waypoints[PatrolPoint].transform;
+            currentDestination = wayPoints[PatrolPoint].transform;
             dist = Vector3.Distance(currentDestination.position, transform.position);
+            //Debug.Log("No of points: " + PatrolPointCount + " Current: " + PatrolPoint);
 
-            if (dist > patrolRadius)
+            if (dist > patrolCheckRange)
             {
                 agent.SetDestination(currentDestination.position);
             }
-            else if (dist <= patrolRadius && PatrolPoint == 3)
+            else if (dist <= patrolCheckRange && PatrolPoint == (PatrolPointCount - 1))
             {
                 PatrolPoint = 0;
             }
 
-            else if (dist <= patrolRadius && PatrolPoint < 3)
+            else if (dist <= patrolCheckRange && PatrolPoint < (PatrolPointCount - 1))
             {
                 PatrolPoint++;
+
             }
         }
     }
