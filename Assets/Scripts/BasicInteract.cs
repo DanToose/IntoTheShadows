@@ -54,16 +54,18 @@ public class BasicInteract : MonoBehaviour
 
         if (rayHit == true) //Turns the Crosshair green
         {
-            //Debug.Log("RaycastHit");
-            CrosshairDot.GetComponent<Renderer>();
-            CrosshairDot.color = Color.green;
+            Debug.Log("RaycastHit is firing");
+            CrosshairDot.gameObject.SetActive(true);
+            //CrosshairDot.GetComponent<Renderer>();
+            //CrosshairDot.color = Color.green;
             canInteract = true;
         }
 
         if (rayHit == false) // resets colour of crosshair
         {
-            CrosshairDot.GetComponent<Renderer>();
-            CrosshairDot.color = Color.white;
+            CrosshairDot.gameObject.SetActive(false);
+            //CrosshairDot.GetComponent<Renderer>();
+            //CrosshairDot.color = Color.white;
             canInteract = false;
         }
 
