@@ -21,7 +21,7 @@ public class PlayerInventory : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        coinText.text = "Coins: " + coinCount;
+        //coinText.text = "Coins: " + coinCount;
     }
 
     public void AddCoin()

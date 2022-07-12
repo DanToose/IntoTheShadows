@@ -21,6 +21,7 @@ public class NavmeshAgentScript : MonoBehaviour
     public float chaseSpeed;
 
     public Vector3 guardPosition;
+    public Vector3 initialFacingDirection;
     public float sightRange;
     public bool inLoS; // NOT USED? Delete?
     private bool hadChased;
@@ -40,7 +41,11 @@ public class NavmeshAgentScript : MonoBehaviour
         target = GameObject.FindGameObjectWithTag("PlayerBody").transform;
         PatrolPoint = 0;
         PatrolPointCount = wayPoints.Length;
-        patrolCheckRange = 0.5f;
+        if (patrolCheckRange == 0)
+        {
+            patrolCheckRange = 0.5f;
+        }
+        initialFacingDirection = transform.localEulerAngles;
     }
 
     void DelayedSwitch()
@@ -65,12 +70,12 @@ public class NavmeshAgentScript : MonoBehaviour
         {
             agent.speed = chaseSpeed;
             seenDist = Vector3.Distance(lastSeenAt, guardPosition);
-            if (seenDist > 0.3)
+            if (seenDist > 2.0)
             {
                 agent.SetDestination(lastSeenAt);
-                //Debug.Log("lastSeenAt = " + lastSeenAt + " seenDist = " + seenDist);
+                Debug.Log("lastSeenAt = " + lastSeenAt + " seenDist = " + seenDist);
             }
-            else if (seenDist <= 0.3)
+            else if (seenDist <= 2.0)
             {
                 Invoke("DelayedSwitch", delay);
                 seenDist = 100;
@@ -99,6 +104,18 @@ public class NavmeshAgentScript : MonoBehaviour
                 {
                     PatrolPoint++;
 
+                }
+            }
+
+            if (wayPoints.Length == 1)
+            {
+                //Debug.Log(initialFacingDirection);
+                currentDestination = wayPoints[PatrolPoint].transform;
+                dist = Vector3.Distance(currentDestination.position, transform.position);
+                if (dist <= patrolCheckRange)
+                {
+                    transform.localEulerAngles = initialFacingDirection;
+                    //Debug.Log(transform.localEulerAngles + " and " + initialFacingDirection);
                 }
             }
         }
