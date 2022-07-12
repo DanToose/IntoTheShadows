@@ -240,7 +240,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
-  m_BaseOffset: 1
+  m_BaseOffset: 3
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &3087843602386687415
@@ -269,6 +269,7 @@ MonoBehaviour:
   inLoS: 0
   lastSeenAt: {x: 0, y: 0, z: 0}
   delay: 3
+  patrolRadius: 0
 --- !u!54 &3087843602386687414
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -379,8 +380,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.8355913, y: 1, z: 1}
+  m_Center: {x: -0.009170611, y: -2.070926e-19, z: 5.7041715e-12}
 --- !u!114 &4447875014390078159
 MonoBehaviour:
   m_ObjectHideFlags: 0
