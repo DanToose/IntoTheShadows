@@ -50,11 +50,11 @@ public class BasicInteract : MonoBehaviour
             //Debug.Log("allyToDirect = null");
         }
 
-        GameObject.Find("CrosshairDot").GetComponent<Image>();
+        //GameObject.Find("CrosshairDot").GetComponent<Image>();
 
         if (rayHit == true) //Turns the Crosshair green
         {
-            Debug.Log("RaycastHit is firing");
+            //Debug.Log("RaycastHit is firing");
             CrosshairDot.gameObject.SetActive(true);
             //CrosshairDot.GetComponent<Renderer>();
             //CrosshairDot.color = Color.green;

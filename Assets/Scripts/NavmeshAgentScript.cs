@@ -80,23 +80,26 @@ public class NavmeshAgentScript : MonoBehaviour
         if (AIState == 3) // ON PATROL -- THIS ALL WORKS AS DESIRED. 
         {
             agent.speed = patrolSpeed;
-            currentDestination = wayPoints[PatrolPoint].transform;
-            dist = Vector3.Distance(currentDestination.position, transform.position);
-            //Debug.Log("No of points: " + PatrolPointCount + " Current: " + PatrolPoint);
-
-            if (dist > patrolCheckRange)
+            if (wayPoints.Length > 0)
             {
-                agent.SetDestination(currentDestination.position);
-            }
-            else if (dist <= patrolCheckRange && PatrolPoint == (PatrolPointCount - 1))
-            {
-                PatrolPoint = 0;
-            }
+                currentDestination = wayPoints[PatrolPoint].transform;
+                dist = Vector3.Distance(currentDestination.position, transform.position);
+                //Debug.Log("No of points: " + PatrolPointCount + " Current: " + PatrolPoint);
 
-            else if (dist <= patrolCheckRange && PatrolPoint < (PatrolPointCount - 1))
-            {
-                PatrolPoint++;
+                if (dist > patrolCheckRange)
+                {
+                    agent.SetDestination(currentDestination.position);
+                }
+                else if (dist <= patrolCheckRange && PatrolPoint == (PatrolPointCount - 1))
+                {
+                    PatrolPoint = 0;
+                }
 
+                else if (dist <= patrolCheckRange && PatrolPoint < (PatrolPointCount - 1))
+                {
+                    PatrolPoint++;
+
+                }
             }
         }
     }
