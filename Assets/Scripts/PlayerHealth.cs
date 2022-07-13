@@ -13,6 +13,7 @@ public class PlayerHealth : MonoBehaviour
     //public GameObject currentCheckpoint;
     public float respawnDelay = 3.0f;
     public Respawner respawn;
+    public bool playerIsAlive;
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +42,8 @@ public class PlayerHealth : MonoBehaviour
     {
         // death stuff
         // Set a delay
+        playerIsAlive = false;
+        // FIRE UP A PANEL / HUD ABOUT DEATH
         Invoke("RespawnFromDeath", respawnDelay);
 
     }
@@ -49,5 +52,6 @@ public class PlayerHealth : MonoBehaviour
     {
         respawn.RespawnPlayer();
         playerHealth = playerMaxHealth;
+        playerIsAlive = true;
     }
 }

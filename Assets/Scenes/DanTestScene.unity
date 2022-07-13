@@ -98226,6 +98226,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1461628103}
     m_Modifications:
+    - target: {fileID: 2098980685208223521, guid: acd8a8959525ec34f9dafc1c10821b68, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2098980685208223521, guid: acd8a8959525ec34f9dafc1c10821b68, type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2490394940580323030, guid: acd8a8959525ec34f9dafc1c10821b68, type: 3}
       propertyPath: hitLayers.m_Bits
       value: 833
