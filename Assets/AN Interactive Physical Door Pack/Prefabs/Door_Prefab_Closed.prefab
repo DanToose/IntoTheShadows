@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6896381467754714373}
   - component: {fileID: 3358090289539349886}
   - component: {fileID: 5620097160305644085}
+  - component: {fileID: 2870814623182042625}
   m_Layer: 0
   m_Name: Door_key
   m_TagString: Untagged
@@ -96,6 +97,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isRedKey: 1
+  player: {fileID: 1114420882598527088, guid: e6ab499dc4b0a584db0373fcfebd3885, type: 3}
+--- !u!65 &2870814623182042625
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2388676223939988407}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.3321118, y: 0.12223468, z: 0.017058514}
+  m_Center: {x: -0.08767343, y: 0.0155281685, z: 0.0000000013969834}
 --- !u!1 &4530468948701185676
 GameObject:
   m_ObjectHideFlags: 0

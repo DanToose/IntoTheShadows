@@ -12,15 +12,17 @@ public class AN_DoorKey : MonoBehaviour
     float distance;
     float angleView;
     Vector3 direction;
+    public GameObject player;// added in by finn
 
     private void Start()
     {
         hero = FindObjectOfType<AN_HeroInteractive>(); // key will get up and it will saved in "inventary"
+        player = GameObject.FindGameObjectWithTag("Player");// added in by finn
     }
 
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        if ( NearView() && Input.GetKeyDown(KeyCode.E) )
+        if (other.gameObject.tag == "Player")
         {
             if (isRedKey) hero.RedKey = true;
             else hero.BlueKey = true;
