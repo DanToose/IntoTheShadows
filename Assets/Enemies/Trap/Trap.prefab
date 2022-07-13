@@ -538,6 +538,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Trap
       objectReference: {fileID: 0}
+    - target: {fileID: 2246129349008855760, guid: 7864ed30dd07c6f47852cf8837b6e27e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3a87616d60a443b48816d55b9dad7123, type: 2}
     - target: {fileID: 2246129349008855762, guid: 7864ed30dd07c6f47852cf8837b6e27e, type: 3}
       propertyPath: m_RootOrder
       value: 0
