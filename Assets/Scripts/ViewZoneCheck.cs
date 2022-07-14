@@ -31,7 +31,7 @@ public class ViewZoneCheck : MonoBehaviour
 
         if (sourceToPlay == null)
         {
-            sourceToPlay = GameObject.Find("SFXSystem").GetComponent<AudioSource>();
+            //sourceToPlay = GameObject.Find("SFXSystem").GetComponent<AudioSource>();
         }
     }
 
@@ -57,7 +57,7 @@ public class ViewZoneCheck : MonoBehaviour
     {
         if (other.gameObject.tag == "PlayerBody")
         {
-            Debug.Log("Player is in enemy view zone");
+            //Debug.Log("Player is in enemy view zone");
             RayCastCheck();
 
             if (inLOS == true)
@@ -76,7 +76,7 @@ public class ViewZoneCheck : MonoBehaviour
     {
         if (other.gameObject.tag == "PlayerBody")
         {
-            Debug.Log("Player left enemy view zone");
+            //Debug.Log("Player left enemy view zone");
             inLOS = false;
             soundFromNotice = false;
 
@@ -126,6 +126,7 @@ public class ViewZoneCheck : MonoBehaviour
 
     private void PlaySoundClip()
     {
+        //Debug.Log("I SHOULD PLAY A SOUND");
         sourceToPlay.PlayOneShot(soundToPlay, volume); //THIS PLAYS IT AT THE PLAYER LOCATION
     }
 }

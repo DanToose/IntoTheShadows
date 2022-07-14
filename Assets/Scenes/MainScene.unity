@@ -10901,7 +10901,7 @@ MonoBehaviour:
   useHUDvignette: 1
   HUDvignette: {fileID: 1996526940}
   soundToPlay: {fileID: 8300000, guid: 47d2e58f0cd2d9346935c0e96c3a73d8, type: 3}
-  sourceToPlay: {fileID: 1891077551}
+  sourceToPlay: {fileID: 0}
   volume: 0.7
 --- !u!135 &218143320
 SphereCollider:

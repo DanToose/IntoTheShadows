@@ -117,7 +117,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2305
   lightChecker: {fileID: 0}
-  soundToPlay: {fileID: 8300000, guid: 7558dddafb75d3648bafa7e8f0d14e4a, type: 3}
+  soundToPlay: {fileID: 8300000, guid: 745468aa3749d97458c307eb73c7c170, type: 3}
   sourceToPlay: {fileID: 3629715178412857037}
   volume: 1
 --- !u!1 &2220594091577394015

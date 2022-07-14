@@ -48,7 +48,7 @@ public class FPSLightCheck : MonoBehaviour
 
         if (sourceToPlay == null)
         {
-            sourceToPlay = GameObject.Find("SFXSystem").GetComponent<AudioSource>();
+            //sourceToPlay = GameObject.Find("SFXSystem").GetComponent<AudioSource>();
         }
 
     }
