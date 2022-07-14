@@ -16,6 +16,10 @@ public class EnemyAttack : MonoBehaviour
     void Start()
     {
         attackRate = 0.05f;
+        if (player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+        }
     }
 
     // Update is called once per frame
