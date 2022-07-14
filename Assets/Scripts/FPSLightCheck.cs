@@ -24,6 +24,11 @@ public class FPSLightCheck : MonoBehaviour
     public bool useHUDvignette;
     public GameObject HUDvignette;
 
+    [SerializeField]
+    private AudioClip soundToPlay;
+    public AudioSource sourceToPlay; // THIS NEEDS TO BE AN AUDIOSOURCE COMPONENT IN YOUR LEVEL! Maybe 'SFXSytem'
+    public float volume;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +44,12 @@ public class FPSLightCheck : MonoBehaviour
         {
             isVisible = true;
         }
+
+        if (sourceToPlay == null)
+        {
+            sourceToPlay = GameObject.Find("SFXSystem").GetComponent<AudioSource>();
+        }
+
     }
 
 
@@ -62,6 +73,7 @@ public class FPSLightCheck : MonoBehaviour
             else
             {
                 HUDvignette.gameObject.SetActive(false);
+                PlaySoundClip();
                 //Debug.Log("Player deemed in shadow now");
             }
         }
@@ -130,6 +142,10 @@ public class FPSLightCheck : MonoBehaviour
 
             }
         }
-        //Debug.Log("isVisible =" + isVisible);
+    }
+
+    public void PlaySoundClip()
+    {
+        sourceToPlay.PlayOneShot(soundToPlay, volume); //THIS PLAYS IT AT THE PLAYER LOCATION
     }
 }
