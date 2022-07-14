@@ -15,12 +15,24 @@ public class ViewZoneCheck : MonoBehaviour
 
     public GameObject lightChecker;
 
+    [SerializeField]
+    private AudioClip soundToPlay;
+    public AudioSource sourceToPlay; // THIS NEEDS TO BE AN AUDIOSOURCE COMPONENT IN YOUR LEVEL! Maybe 'SFXSytem'
+    public float volume;
+    private bool soundFromNotice;
+
     void Start()
     {
         hitLayers = LayerMask.GetMask("Player") | LayerMask.GetMask("Default") | LayerMask.GetMask("Environment");
         target = GameObject.FindGameObjectWithTag("PlayerBody").transform;
         sightRange = parent.GetComponent<NavmeshAgentScript>().sightRange;
         lightChecker = GameObject.Find("lightChecker");
+        soundFromNotice = false;
+
+        if (sourceToPlay == null)
+        {
+            sourceToPlay = GameObject.Find("SFXSystem").GetComponent<AudioSource>();
+        }
     }
 
    private void FixedUpdate()
@@ -51,6 +63,11 @@ public class ViewZoneCheck : MonoBehaviour
             if (inLOS == true)
             {
                 parent.gameObject.GetComponent<NavmeshAgentScript>().AIState = 1; // HEAD TOWARDS PLAYER
+                if (soundFromNotice == false)
+                {
+                    PlaySoundClip();
+                    soundFromNotice = true;
+                }
             }
         }
     }
@@ -61,10 +78,12 @@ public class ViewZoneCheck : MonoBehaviour
         {
             Debug.Log("Player left enemy view zone");
             inLOS = false;
+            soundFromNotice = false;
 
             if (parent.gameObject.GetComponent<NavmeshAgentScript>().AIState == 1)
             {
                 parent.gameObject.GetComponent<NavmeshAgentScript>().AIState = 2;
+
             }
         }
     }
@@ -83,6 +102,7 @@ public class ViewZoneCheck : MonoBehaviour
             if (hitThing.collider.tag != "PlayerBody")
             {
                 inLOS = false;
+                soundFromNotice = false;
             }
             else
             {
@@ -100,6 +120,12 @@ public class ViewZoneCheck : MonoBehaviour
         else
         {
             inLOS = false;
+            soundFromNotice = false;
         }
+    }
+
+    private void PlaySoundClip()
+    {
+        sourceToPlay.PlayOneShot(soundToPlay, volume); //THIS PLAYS IT AT THE PLAYER LOCATION
     }
 }

@@ -20,12 +20,21 @@ public class BasicInteract : MonoBehaviour
     public bool canInteract;
     public GameObject interactiveObject;
 
+    [SerializeField]
+    private AudioClip soundToPlay;
+    public AudioSource sourceToPlay; // THIS NEEDS TO BE AN AUDIOSOURCE COMPONENT IN YOUR LEVEL! Maybe 'SFXSytem'
+    public float volume;
+
     // Start is called before the first frame update
     void Start()
     {
         rayHit = false;
         canInteract = false;
         numberInteractables = 0;
+        if (sourceToPlay == null)
+        {
+            sourceToPlay = GameObject.Find("SFXSystem").GetComponent<AudioSource>();
+        }
     }
 
     // Update is called once per frame
@@ -73,15 +82,20 @@ public class BasicInteract : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E) && (interactiveObject != null))
             {
-                Debug.Log("E key registered!");
+                //Debug.Log("E key registered!");
                 interactiveObject.GetComponent<LightSwitch>().lightSwitchToggle();
+                PlaySoundClip();
             }
         }
 
     }
 
-    
-    
+    public void PlaySoundClip()
+    {
+        sourceToPlay.PlayOneShot(soundToPlay, volume); //THIS PLAYS IT AT THE PLAYER LOCATION
+    }
+
+
     public void AddInt()
     {
         numberInteractables++;
