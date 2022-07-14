@@ -11,6 +11,7 @@ public class Respawner : MonoBehaviour
     private Transform checkpointLocation;
     private GameObject player;
     private GameObject startingPoint;
+    private CharacterController charController;
 
     public Material activeMaterial;
     public Material inactiveMaterial;
@@ -19,6 +20,7 @@ public class Respawner : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        charController = player.GetComponent<CharacterController>();
         startingPoint = GameObject.FindGameObjectWithTag("StartPoint");
         currentCheckpoint = startingPoint;
 
@@ -36,8 +38,10 @@ public class Respawner : MonoBehaviour
 
     public void RespawnPlayer()
     {
+        charController.enabled = false;
         checkpointLocation = currentCheckpoint.transform;
         player.transform.position = checkpointLocation.position;
+        Invoke("ReactivateController", 0.5f);
     }
 
     public void UpdateCheckPoints()
@@ -54,5 +58,10 @@ public class Respawner : MonoBehaviour
                 l.gameObject.GetComponent<MeshRenderer>().material = activeMaterial;
             }
         }
+    }
+
+    private void ReactivateController()
+    {
+        charController.enabled = true;
     }
 }
