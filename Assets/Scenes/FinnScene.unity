@@ -34304,6 +34304,10 @@ PrefabInstance:
       value: Door_Prefab_Closed
       objectReference: {fileID: 0}
     - target: {fileID: 5620097159907514564, guid: 07dd0ed6acb5c5140a213008cf7b2a1d, type: 3}
+      propertyPath: m_Motor.force
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5620097159907514564, guid: 07dd0ed6acb5c5140a213008cf7b2a1d, type: 3}
       propertyPath: m_EnableCollision
       value: 1
       objectReference: {fileID: 0}
@@ -34318,6 +34322,14 @@ PrefabInstance:
     - target: {fileID: 5620097159907514564, guid: 07dd0ed6acb5c5140a213008cf7b2a1d, type: 3}
       propertyPath: m_ConnectedAnchor.z
       value: 59.82248
+      objectReference: {fileID: 0}
+    - target: {fileID: 5620097159907514564, guid: 07dd0ed6acb5c5140a213008cf7b2a1d, type: 3}
+      propertyPath: m_Motor.targetVelocity
+      value: -100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5620097159907514564, guid: 07dd0ed6acb5c5140a213008cf7b2a1d, type: 3}
+      propertyPath: m_Spring.targetPosition
+      value: 90
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07dd0ed6acb5c5140a213008cf7b2a1d, type: 3}
@@ -43325,6 +43337,7 @@ MonoBehaviour:
   playerMaxHealth: 100
   respawnDelay: 3
   respawn: {fileID: 982822147}
+  playerIsAlive: 0
 --- !u!43 &986343299
 Mesh:
   m_ObjectHideFlags: 0

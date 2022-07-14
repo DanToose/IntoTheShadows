@@ -86,7 +86,7 @@ public class AN_DoorScript : MonoBehaviour
         distance = Vector3.Distance(transform.position, Camera.main.transform.position);
         direction = transform.position - Camera.main.transform.position;
         angleView = Vector3.Angle(Camera.main.transform.forward, direction);
-        if (distance < 3f) return true; // angleView < 35f && 
+        if (distance < 5f) return true; // angleView < 35f && 
         else return false;
     }
 
