@@ -14,44 +14,63 @@ public class PlayerHealth : MonoBehaviour
     public float respawnDelay = 3.0f;
     public Respawner respawn;
     public bool playerIsAlive;
+    private bool readyToRespawn;
+
+    public Text deathText;
+    public Text respawnText;
+    public Image deathPanel;
+
+    public FPSLightCheck lightCheck;
 
     // Start is called before the first frame update
     void Start()
     {
         playerHealth = playerMaxHealth;
-        //healthText.text = "Health: " + playerHealth;
-        //currentCheckpoint = GameObject.FindGameObjectWithTag("StartPoint");
+        deathText = GameObject.Find("DeathText").GetComponent<Text>();
+        respawnText = GameObject.Find("RespawnText").GetComponent<Text>();
+        deathPanel = GameObject.Find("DeathPanel").GetComponent<Image>();
+        lightCheck = GameObject.Find("lightChecker").GetComponent<FPSLightCheck>();
+
+        playerIsAlive = true;
+        respawnText.text = "";
+        deathText.text = "";
+        deathPanel.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*if (healthText != null)
+        if (readyToRespawn && Input.anyKeyDown)
         {
-            //healthText.text = "Health: " + playerHealth;
-
-            if (playerHealth <= 0)
-            {
-                playerHealth = 0;
-                playerDeath();
-            }
-        } */
+            readyToRespawn = false;
+            respawnText.text = "";
+            deathText.text = "";
+            deathPanel.gameObject.SetActive(false);
+            lightCheck.GetComponent<FPSLightCheck>().isVisible = false;
+            ActualRespawn();
+        }
     }
 
     public void playerDeath()
     {
         // death stuff
-        // Set a delay
         playerIsAlive = false;
-        // FIRE UP A PANEL / HUD ABOUT DEATH
+        deathPanel.gameObject.SetActive(true);
+        deathText.text = "You Died!";
         Invoke("RespawnFromDeath", respawnDelay);
 
     }
 
     void RespawnFromDeath()
     {
-        respawn.RespawnPlayer();
+        respawnText.text = "Press any key to respawn";
+        readyToRespawn = true;
+    }
+
+    void ActualRespawn()
+    {
         playerHealth = playerMaxHealth;
         playerIsAlive = true;
+        respawn.RespawnPlayer();
     }
 }
