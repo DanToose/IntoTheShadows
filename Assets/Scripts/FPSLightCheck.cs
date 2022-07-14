@@ -28,6 +28,7 @@ public class FPSLightCheck : MonoBehaviour
     private AudioClip soundToPlay;
     public AudioSource sourceToPlay; // THIS NEEDS TO BE AN AUDIOSOURCE COMPONENT IN YOUR LEVEL! Maybe 'SFXSytem'
     public float volume;
+    private bool donePlayingSound = true;
 
     // Start is called before the first frame update
     void Start()
@@ -73,11 +74,23 @@ public class FPSLightCheck : MonoBehaviour
             else
             {
                 HUDvignette.gameObject.SetActive(false);
-                PlaySoundClip();
+                if (donePlayingSound == true)
+                {
+                    donePlayingSound = false;
+                    PlaySoundClip();
+                    StartCoroutine(Timer());
+                }
+
                 //Debug.Log("Player deemed in shadow now");
             }
         }
 
+    }
+
+    IEnumerator Timer()
+    {
+        yield return new WaitForSeconds(4);
+        donePlayingSound = true;
     }
 
     private void OnTriggerEnter(Collider other)

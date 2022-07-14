@@ -27,6 +27,7 @@ public class ViewZoneCheck : MonoBehaviour
         target = GameObject.FindGameObjectWithTag("PlayerBody").transform;
         sightRange = parent.GetComponent<NavmeshAgentScript>().sightRange;
         lightChecker = GameObject.Find("lightChecker");
+        soundFromNotice = false;
 
         if (sourceToPlay == null)
         {
@@ -77,11 +78,12 @@ public class ViewZoneCheck : MonoBehaviour
         {
             Debug.Log("Player left enemy view zone");
             inLOS = false;
+            soundFromNotice = false;
 
             if (parent.gameObject.GetComponent<NavmeshAgentScript>().AIState == 1)
             {
                 parent.gameObject.GetComponent<NavmeshAgentScript>().AIState = 2;
-                soundFromNotice = false;
+
             }
         }
     }
@@ -122,7 +124,7 @@ public class ViewZoneCheck : MonoBehaviour
         }
     }
 
-    public void PlaySoundClip()
+    private void PlaySoundClip()
     {
         sourceToPlay.PlayOneShot(soundToPlay, volume); //THIS PLAYS IT AT THE PLAYER LOCATION
     }
