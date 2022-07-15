@@ -14,6 +14,12 @@ public class AN_DoorKey : MonoBehaviour
     Vector3 direction;
     public GameObject player;// added in by finn
 
+    [SerializeField]
+    private AudioClip soundToPlay;
+    public AudioSource sourceToPlay; // THIS NEEDS TO BE AN AUDIOSOURCE COMPONENT IN YOUR LEVEL! Maybe 'SFXSytem'
+    public float volume;
+    private bool donePlayingSound = true;
+
     private void Start()
     {
         hero = FindObjectOfType<AN_HeroInteractive>(); // key will get up and it will saved in "inventary"
@@ -26,6 +32,7 @@ public class AN_DoorKey : MonoBehaviour
         {
             if (isRedKey) hero.RedKey = true;
             else hero.BlueKey = true;
+            sourceToPlay.PlayOneShot(soundToPlay, volume);
             Destroy(gameObject);
         }
     }
