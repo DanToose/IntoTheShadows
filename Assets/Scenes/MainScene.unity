@@ -55568,7 +55568,7 @@ GameObject:
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1336781158
 Transform:
   m_ObjectHideFlags: 0
@@ -62792,6 +62792,10 @@ PrefabInstance:
       propertyPath: wayPoints.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3087843602386687415, guid: 5232c8523c3ed424b8f6ecc67e08f1cb, type: 3}
+      propertyPath: wayPoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 604224039}
     - target: {fileID: 6948239289794470275, guid: 5232c8523c3ed424b8f6ecc67e08f1cb, type: 3}
       propertyPath: m_CastShadows
       value: 0
