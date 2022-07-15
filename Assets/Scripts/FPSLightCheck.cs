@@ -70,6 +70,7 @@ public class FPSLightCheck : MonoBehaviour
 
                 HUDvignette.gameObject.SetActive(true);
                 //Debug.Log("Player deemed in light now");
+                donePlayingSound = true;
             }
             else
             {
@@ -90,7 +91,7 @@ public class FPSLightCheck : MonoBehaviour
     IEnumerator Timer()
     {
         yield return new WaitForSeconds(4);
-        donePlayingSound = true;
+        //donePlayingSound = true;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -159,6 +160,7 @@ public class FPSLightCheck : MonoBehaviour
 
     public void PlaySoundClip()
     {
+        Debug.Log("Leaving light sound triggered");
         sourceToPlay.PlayOneShot(soundToPlay, volume); //THIS PLAYS IT AT THE PLAYER LOCATION
     }
 }
